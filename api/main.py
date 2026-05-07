@@ -1,5 +1,6 @@
 # api/main.py
 # API FastAPI pour SenSante - Assistant pre-diagnostic medical
+# Lab 3 - Integration de Modeles IA - ESP / UCAD
 
 from fastapi import FastAPI
 
@@ -130,3 +131,27 @@ def predict(patient: PatientInput):
         confiance=confiance,
         message=messages.get(diagnostic, "Consultez un medecin.")
     )
+
+#--------------------------------------------------------------------
+
+@app.get("/model-info")
+def model_info():
+    """Informations sur le modele charge."""
+    return {
+        "type":             type(model).__name__,
+        "nombre_arbres":    model.n_estimators,
+        "nombre_features":  model.n_features_in_,
+        "classes":          list(model.classes_),
+        "features":         feature_cols
+    }
+
+from fastapi.middleware.cors import CORSMiddleware
+
+# Autoriser les requêtes depuis le frontend
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],     # En dev : tout accepter
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
