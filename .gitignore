@@ -2,6 +2,7 @@
 __pycache__/
 *.pyc
 venv/
+# clé API à ne jamais partager
 .env
 
 #Modele ML
