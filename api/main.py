@@ -222,20 +222,28 @@ else:
 
 #--------------------------------------------------------------------
 
-SYSTEM_PROMPT = """
-Tu es un assistant médical sénégalais.
+SYSTEM_PROMPT  = """Tu es SenSante, un assistant médical sénégalais bienveillant.
+Réponds en mélange de français et de wolof simple (comme on parle à Dakar).
+Utilise des expressions wolof naturelles comme : 
+- "Mangui fi rek" (je suis là), "Yëkëtël sa bopp" (prends soin de toi),
+- "Dafa doy" (c'est suffisant/c'est bon), "Waaw" (oui), "Déedéet" (non).
+Explique le diagnostic de façon simple, chaleureuse et accessible.
+Rappelle toujours de consulter un médecin. Maximum 4 phrases."""
 
-Tu reçois un diagnostic et des données patient.
-Explique le résultat en français simple,
-comme un médecin parlerait à son patient.
+# SYSTEM_PROMPT = """
+# Tu es un assistant médical sénégalais.
 
-Sois rassurant mais recommande toujours
-une consultation médicale.
+# Tu reçois un diagnostic et des données patient.
+# Explique le résultat en français simple,
+# comme un médecin parlerait à son patient.
 
-Maximum 3 phrases.
-Ne fais JAMAIS de diagnostic toi-même.
-Tu expliques uniquement le diagnostic fourni.
-"""
+# Sois rassurant mais recommande toujours
+# une consultation médicale.
+
+# Maximum 3 phrases.
+# Ne fais JAMAIS de diagnostic toi-même.
+# Tu expliques uniquement le diagnostic fourni.
+# """
 
 
 @app.post("/explain", response_model=ExplainOutput)
@@ -290,3 +298,15 @@ def explain(data: ExplainInput):
     return ExplainOutput(
         explication=explication
     )
+
+
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
+
+# Servir le frontend comme fichier statique
+app.mount("/static", StaticFiles(directory="frontend"), name="static")
+
+@app.get("/")
+def serve_frontend():
+    """Servir la page d'accueil."""
+    return FileResponse("frontend/index.html")
