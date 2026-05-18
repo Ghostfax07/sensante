@@ -15,3 +15,12 @@ grippe , typhoide ) a partir des symptomes du patient .
 Moussa Diallo - L2 GLSI - ESP/ UCAD
 ## Cours
 Integration de Modeles IA - Dr. El Hadji Bassirou TOURE
+
+---
+title: SenSante
+emoji: 🏥
+colorFrom: red
+colorTo: pink
+sdk: docker
+pinned: false
+---
