@@ -21,7 +21,7 @@ SenSante utilise le Machine Learning pour aider au pre-diagnostic des maladies c
 - `notebooks/` : Scripts d'exploration
 
 ## Auteur
-Moussa Diallo - L2 GLSI - ESP/UCAD
+Cheikh Ndoye - L2 GLSI - ESP/UCAD
 
 ## Cours
 Integration de Modeles IA - Dr. El Hadji Bassirou TOURE
