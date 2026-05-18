@@ -13,6 +13,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copier tout le code du projet
 COPY . .
 
+# Entraîner le modèle au build
+RUN python notebooks/train_model.py
+
 # Declarer le port
 EXPOSE 8000
 
